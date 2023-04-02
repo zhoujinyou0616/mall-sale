@@ -128,7 +128,7 @@ public class AdminServiceImpl implements IAdminService {
             List<User> userList = userService.list(wrapper);
             // 将查询的列表进行分组，方便数据批量保存到同一张表中
             Map<Long, List<User>> userListMap = userList.stream().collect(Collectors.groupingBy(user -> user.getMobile() % 8));
-            // 将数据保存到分表后的数据中，线程池处理
+            // 将数据保存到分表后的数据中，线程池处理耗时：18分钟
             for (List<User> users : userListMap.values()) {
                 threadPool.execute(new SaveShardingUserThreadHandle(userShardingService, users));
             }
