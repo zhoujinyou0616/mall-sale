@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eugene.mapper.UserMapper">
 
-    <insert id="saveBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    <insert id="saveBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user (id, name, mobile, level, tags, create_time, update_time)
         <foreach collection="userList" item="user" separator=",">
-            VALUES (#{user.id}, #{user.name}, #{user.mobile}, #{user.level}, #{user.tags}, #{user.createTime}, #{user.updateTime})
+            VALUES (#{user.id}, #{user.name}, #{user.mobile}, #{user.level}, #{user.tags}, #{user.createTime},
+            #{user.updateTime})
         </foreach>
     </insert>
 

@@ -1,0 +1,14 @@
+# 整合nacos，如果不想用nacos，可以把/nacos目录下的配置文件拷贝到/resources目录下替换使用
+spring:
+  config:
+    import:
+      - optional:nacos:config.yml
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 80b36a7d-2ab4-4366-9c87-f49f148e3c17
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 80b36a7d-2ab4-4366-9c87-f49f148e3c17
+

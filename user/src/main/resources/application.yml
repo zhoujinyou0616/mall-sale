@@ -2,17 +2,11 @@ spring:
   # 环境 dev|test|prod
   profiles:
     active: dev
-  #文件上传设置
-  servlet:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
-      enabled: true
+  application:
+    name: user
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  application:
-    name: user
 
 # mybaits-plus配置
 mybatis-plus:
