@@ -144,7 +144,10 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
                     couponCache = getCouponDB(code);
                 } finally {
                     if (lock.isLocked()) {
-                        lock.unlock();
+                        // 严谨一点，防止当前线程释放掉其他线程的锁
+                        if (lock.isHeldByCurrentThread()) {
+                            lock.unlock();
+                        }
                     }
                 }
             }
@@ -193,7 +196,10 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
                 }
             } finally {
                 if (lock.isLocked()) {
-                    lock.unlock();
+                    // 严谨一点，防止当前线程释放掉其他线程的锁
+                    if (lock.isHeldByCurrentThread()) {
+                        lock.unlock();
+                    }
                 }
             }
         }

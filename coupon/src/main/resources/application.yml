@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: coupon
+    name: mall-coupon
 
 # mybaits-plus配置
 mybatis-plus:
@@ -38,4 +38,3 @@ management:
   health:
     redis:
       enabled: true
-

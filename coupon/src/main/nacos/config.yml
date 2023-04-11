@@ -1,10 +1,12 @@
 configdata:
-  readAndWriteSwitch: S1 # 双写热配
+  readAndWriteSwitch: S2
 server:
   port: 8081
   undertow:
     io-threads: 8
     worker-threads: 256
+  servlet:
+    context-path: /coupon
 spring:
   #文件上传设置
   servlet:
@@ -35,12 +37,6 @@ spring:
     host: 127.0.0.1
     port: 6379
     database: 1
-    lettuce:
-      pool:
-        min-idle: 8 # 最小空闲链接
-        max-idle: 50 # 最大空闲链接
-        max-wait: 10000 # 最大阻塞等待时间
-        max-active: 8 # 最大链接数
   sharding-sphere:
     props:
       sql:

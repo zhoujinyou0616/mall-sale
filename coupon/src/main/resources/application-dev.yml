@@ -2,13 +2,13 @@
 spring:
   config:
     import:
-      - optional:nacos:config.yml
+      - optional:nacos:coupon_config.yml
   cloud:
     nacos:
       config:
         server-addr: 127.0.0.1:8848
-        namespace: 80b36a7d-2ab4-4366-9c87-f49f148e3c17
+        namespace: e67a68d9-0db1-4699-8dd2-522e9022ac45
       discovery:
         server-addr: 127.0.0.1:8848
-        namespace: 80b36a7d-2ab4-4366-9c87-f49f148e3c17
+        namespace: e67a68d9-0db1-4699-8dd2-522e9022ac45
 

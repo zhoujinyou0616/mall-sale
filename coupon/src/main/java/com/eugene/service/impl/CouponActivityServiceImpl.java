@@ -158,7 +158,10 @@ public class CouponActivityServiceImpl implements ICouponActivityService {
             } finally {
                 if (lock.isLocked()) {
                     // TODO 重点注意：释放锁前要判断当前是否被锁住了lock.isLocked()，否则之间调用unlock会报异常
-                    lock.unlock();
+                    // 严谨一点，防止当前线程释放掉其他线程的锁
+                    if (lock.isHeldByCurrentThread()) {
+                        lock.unlock();
+                    }
                 }
             }
         } else {

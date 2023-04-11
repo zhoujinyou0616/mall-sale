@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 路由的唯一标识
+        - id: user_route
+          # 需要转发的地址, lb表示使用nacos本地的负载均衡策略
+          # uri: http://127.0.0.1:8080
+          uri: lb://mall-user
+          # 断言规则 用于路有规则匹配
+          predicates:
+            - Path= /user/**
+        # 路由的唯一标识
+        - id: coupon_route
+          # 需要转发的地址, lb表示使用nacos本地的负载均衡策略
+          # uri: http://127.0.0.1:8081
+          uri: lb://mall-coupon
+          # 断言规则 用于路有规则匹配 1
+          predicates:
+            - Path= /coupon/**

@@ -1,0 +1,14 @@
+server:
+  port: 8079
+  undertow:
+    io-threads: 8
+    worker-threads: 256
+  servlet:
+    context-path: /gateway
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+logging:
+  config: classpath:logback/logback-dev.xml

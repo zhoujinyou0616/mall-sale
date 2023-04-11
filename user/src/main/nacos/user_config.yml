@@ -3,7 +3,8 @@ server:
   undertow:
     io-threads: 8
     worker-threads: 256
-
+  servlet:
+    context-path: /user
 spring:
   datasource:
     dynamic:
