@@ -112,3 +112,12 @@ CREATE TABLE `t_user7`
     `update_time` datetime NOT NULL COMMENT '用户更新时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- mq事务表
+CREATE TABLE `t_mq_transaction_log`
+(
+    `id`             bigint auto_increment not null COMMENT 'id',
+    `transaction_id` varchar(64)   NOT NULL COMMENT '事务id',
+    `log`            varchar(1000) NOT NULL COMMENT '日志',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

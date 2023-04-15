@@ -1,5 +1,6 @@
+# 双写上线开关, S0-读旧写旧 S1-读旧双写 S2-读新双写 S3-读新写新
 configdata:
-  readAndWriteSwitch: S2
+  readAndWriteSwitch: S0
 server:
   port: 8081
   undertow:

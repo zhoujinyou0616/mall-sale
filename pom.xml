@@ -11,6 +11,7 @@
     <modules>
         <module>user</module>
         <module>coupon</module>
+        <module>couponNew</module>
     </modules>
 
     <properties>
@@ -37,6 +38,7 @@
         <commons-pools-version>2.11.1</commons-pools-version>
         <sharding-sphere.version>4.1.1</sharding-sphere.version>
         <nacos-springcloud.version>1.4.1</nacos-springcloud.version>
+        <apache-rocketmq.version>2.2.2</apache-rocketmq.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -165,6 +167,12 @@
                 <artifactId>spring-cloud-loadbalancer</artifactId>
                 <version>${spring-cloud-commons.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${apache-rocketmq.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

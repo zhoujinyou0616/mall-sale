@@ -26,12 +26,13 @@ public class RedisLockService {
 
     /**
      * 尝试在指定时间内加锁
+     *
      * @param key
      * @param value
      * @param timeout 锁等待时间
      * @return
      */
-    public boolean tryLock(String key,String value, Duration timeout){
+    public boolean tryLock(String key, String value, Duration timeout) {
         long waitMills = timeout.toMillis();
         long currentTimeMillis = System.currentTimeMillis();
         do {
@@ -50,12 +51,13 @@ public class RedisLockService {
 
     /**
      * 直接加锁
+     *
      * @param key
      * @param value
      * @param expire
      * @return
      */
-    public boolean lock(String key,String value, Long expire){
+    public boolean lock(String key, String value, Long expire) {
         String luaScript = "if redis.call('setnx', KEYS[1], ARGV[1]) == 1 then return redis.call('expire', KEYS[1], ARGV[2]) else return 0 end";
         RedisScript<Long> redisScript = new DefaultRedisScript<>(luaScript, Long.class);
         Long result = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), value, String.valueOf(expire));
@@ -65,14 +67,15 @@ public class RedisLockService {
 
     /**
      * 释放锁
+     *
      * @param key
      * @param value
      * @return
      */
-    public boolean releaseLock(String key,String value){
+    public boolean releaseLock(String key, String value) {
         String luaScript = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
         RedisScript<Long> redisScript = new DefaultRedisScript<>(luaScript, Long.class);
-        Long result = stringRedisTemplate.execute(redisScript, Collections.singletonList(key),value);
+        Long result = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), value);
         return result.equals(Long.valueOf(1));
     }
 }

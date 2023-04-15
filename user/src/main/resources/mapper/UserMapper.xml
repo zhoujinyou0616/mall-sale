@@ -4,8 +4,9 @@
 
     <insert id="saveBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user (id, name, mobile, level, tags, create_time, update_time)
+        VALUES
         <foreach collection="userList" item="user" separator=",">
-            VALUES (#{user.id}, #{user.name}, #{user.mobile}, #{user.level}, #{user.tags}, #{user.createTime},
+            (#{user.id}, #{user.name}, #{user.mobile}, #{user.level}, #{user.tags}, #{user.createTime},
             #{user.updateTime})
         </foreach>
     </insert>

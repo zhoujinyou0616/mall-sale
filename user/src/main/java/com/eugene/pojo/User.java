@@ -1,8 +1,10 @@
 package com.eugene.pojo;
 
+import cn.hutool.core.lang.Snowflake;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.eugene.controller.request.RegisterUserRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -49,4 +51,19 @@ public class User implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+
+    public static User converUser(RegisterUserRequest request) {
+        Snowflake snowflake = new Snowflake();
+        User user = new User();
+        user.setId(snowflake.nextId());
+        user.setName(request.getName());
+        user.setMobile(request.getMobile());
+        // 用户等级：0-游客，1-vip，2-店主
+        user.setLevel(1);
+        // 用户标签 10-新VIP，11-老VIP，12-未自购VIP、13-已自购VIP；20-新店主，21-老店主2，2-未自购店主，23-已自购店主，24-未开单店主，25-已开单店主
+        user.setTags("10,12");
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        return user;
+    }
 }

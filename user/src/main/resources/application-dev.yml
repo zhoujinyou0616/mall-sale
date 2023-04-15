@@ -11,3 +11,8 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
         namespace: e67a68d9-0db1-4699-8dd2-522e9022ac45
+rocketmq:
+  producer:
+    group: cluster-group
+    send-message-timeout: 10000
+  name-server: 127.0.0.1:9876

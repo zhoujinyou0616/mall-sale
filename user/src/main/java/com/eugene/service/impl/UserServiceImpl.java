@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Service
 @DS("master")
+@Deprecated
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
     @Autowired
     private UserMapper userMapper;

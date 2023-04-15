@@ -94,9 +94,9 @@ public class CouponActivityServiceImpl implements ICouponActivityService {
         List<CouponActivity> couponActivities = couponActivityMapper.selectList(queryWrapper);
         return couponActivities.stream()
                 // todo receivedNumber 取真实领取数量 改为查询Redis
-        //        QueryWrapper<CouponActivityLog> queryWrapper = new QueryWrapper<>();
-        //        queryWrapper.eq("coupon_activity_id", request.getCouponActivityId());
-        //        Integer receivedNumber = couponActivityLogMapper.selectCount(queryWrapper);
+                //        QueryWrapper<CouponActivityLog> queryWrapper = new QueryWrapper<>();
+                //        queryWrapper.eq("coupon_activity_id", request.getCouponActivityId());
+                //        Integer receivedNumber = couponActivityLogMapper.selectCount(queryWrapper);
                 .map(couponActivity -> buildCouponActivityResponse(couponActivity, 0L))
                 .collect(Collectors.toList());
     }

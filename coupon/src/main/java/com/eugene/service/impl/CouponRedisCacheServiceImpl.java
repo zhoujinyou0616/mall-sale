@@ -6,7 +6,6 @@ import com.eugene.service.ICouponCacheService;
 import com.eugene.utils.CouponRedisLuaUtil;
 import com.eugene.utils.RedisUtil;
 import jodd.util.StringUtil;
-import org.omg.CORBA.TIMEOUT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

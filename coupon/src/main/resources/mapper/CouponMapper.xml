@@ -5,8 +5,8 @@
     <insert id="saveBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO mall_coupon_db.t_coupon0 (coupon_template_code, code, user_id, mobile, status, begin_time, end_time,
         create_time, use_time, update_time)
+        VALUES
         <foreach collection="coupons" item="coupon" separator=",">
-            VALUES
             (#{coupon.couponTemplateCode},#{coupon.code},#{coupon.userId},#{coupon.mobile},#{coupon.status},#{coupon.beginTime},#{coupon.endTime},#{coupon.createTime},#{coupon.useTime},#{coupon.updateTime})
         </foreach>
     </insert>

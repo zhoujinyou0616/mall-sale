@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eugene.mapper.CouponTemplateMapper">
+
+    <insert id="saveBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into mall_coupon_new_db.t_coupon_template (code, name, price, limit_number, limit_sku, limit_spu,
+        validity_type, begin_time, end_time, validity_day, status, create_time, update_time)
+        VALUES
+        <foreach collection="couponTemplates" item="couponTemplate" separator=",">
+            (#{couponTemplate.code}, #{couponTemplate.name}, #{couponTemplate.price},
+            #{couponTemplate.limitNumber},#{couponTemplate.limitSku}, #{couponTemplate.limitSpu},
+            #{couponTemplate.validityType}, #{couponTemplate.beginTime},#{couponTemplate.endTime},
+            #{couponTemplate.validityDay}, #{couponTemplate.status}, #{couponTemplate.createTime},
+            #{couponTemplate.updateTime})
+        </foreach>
+    </insert>
+
+</mapper>

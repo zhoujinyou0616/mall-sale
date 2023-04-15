@@ -1,8 +1,8 @@
 <h1>优惠券系统</h1>
 接口文档地址：http://127.0.0.1:8081/coupon/doc.html
 
-
 ## 简历项目描述
+
 - 1、使用多级缓存提高Redis性能，券模版使用Guava缓存，用户券列表使用Redis的List缓存
 -     （节省Redis服务器成本，提高性能）
 - 2、分布式锁Redisson实际使用经验
@@ -21,13 +21,14 @@
 -        因为产品不会想到要不要清理废弃数据）
 - 8、todo：压测结果：Guava能达到 12000 QPS,Redis能达到 4000 QPS; Mysql的性能 800？
 - 9、todo：数据同步问题：
--    1、MQ异步处理，保障消息不丢失就行。（好处：可控、可重复消费、自定义）
--    2、canel数据同步工具，Mysql的数据同步到ES,同步到其他存储中。（好处：简便开发） 
+- 1、MQ异步处理，保障消息不丢失就行。（好处：可控、可重复消费、自定义）
+- 2、canel数据同步工具，Mysql的数据同步到ES,同步到其他存储中。（好处：简便开发）
 - 10、不仅仅是可以使用Redis、也可以针对不同场景下使用ES、MongoDB等等。
 - 11、threadPool的实际使用案例、分表数据迁移案例、线程池调优
 - 12、有从0到1的上线经验、有压测调优的经验。JVM调优、启动参数等等
 
 ## 功能
+
 - 券分表
 - 领券中心
 - 抢券
@@ -37,6 +38,7 @@
 - 券清理
 
 ## 技术栈
+
 - Mysql
 - Redis
 - Guava
@@ -45,6 +47,7 @@
 - threadPool
 
 ## 启动命令：
+
 ```
 -Xms4g -Xmx4g -Xmn1g -Xss256K -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:MaxTenuringThreshold=6 -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled -XX:CMSFullGCsBeforeCompaction=10
 ```

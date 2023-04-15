@@ -69,9 +69,9 @@ public class CouponRedisLuaUtil {
         // 如果失败，则回滚扣减领券活动库存
         // 如果成功 返回最新库存数量
         String script = "local newTotalNumber = redis.call('HINCRBY', KEYS[1], KEYS[2], -ARGV[1]); " +
-                        "if (newTotalNumber < 0) then " +
-                        "redis.call('HINCRBY', KEYS[1], KEYS[2], ARGV[1]); return -1; " +
-                        "else return newTotalNumber end;";
+                "if (newTotalNumber < 0) then " +
+                "redis.call('HINCRBY', KEYS[1], KEYS[2], ARGV[1]); return -1; " +
+                "else return newTotalNumber end;";
         DefaultRedisScript<Long> redisScript = new DefaultRedisScript();
         redisScript.setScriptText(script);
         List<String> keys = new ArrayList<>();
