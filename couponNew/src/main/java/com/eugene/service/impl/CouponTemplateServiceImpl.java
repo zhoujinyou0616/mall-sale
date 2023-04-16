@@ -33,6 +33,7 @@ public class CouponTemplateServiceImpl extends ServiceImpl<CouponTemplateMapper,
     public boolean addCouponTemplate(CouponTemplateRequest request) {
         CouponTemplate couponTemplate = new CouponTemplate();
         // todo 双写阶段的code应该取旧服务传过来的,否则就自动生成code
+//        couponTemplate.setCode(getCouponTemplateCode());
         couponTemplate.setCode(StringUtil.isNotBlank(request.getCode()) ? request.getCode() : getCouponTemplateCode());
         couponTemplate.setName(request.getName());
         couponTemplate.setPrice(request.getPrice());

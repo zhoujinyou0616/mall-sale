@@ -8,6 +8,7 @@ import com.eugene.pojo.CouponTemplate;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import lombok.SneakyThrows;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -75,7 +76,7 @@ public class CouponTemplateCacheServiceImpl implements ICouponTemplateCacheServi
                     }
                 });
         // 加载全部券模版信息到缓存中
-        loadAllCouponTemplateCache();
+//        loadAllCouponTemplateCache();
 
     }
 
@@ -97,9 +98,10 @@ public class CouponTemplateCacheServiceImpl implements ICouponTemplateCacheServi
         couponTemplateCache.put(couponTemplateCode, couponTemplate);
     }
 
+    @SneakyThrows
     @Override
     public CouponTemplate getCouponTemplateCache(String couponTemplateCode) {
-        return couponTemplateCache.getIfPresent(couponTemplateCode);
+        return couponTemplateCache.get(couponTemplateCode);
     }
 
     @Override

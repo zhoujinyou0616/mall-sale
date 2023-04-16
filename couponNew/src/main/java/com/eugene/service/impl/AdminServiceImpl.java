@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.eugene.cache.ICouponTemplateCacheService;
 import com.eugene.pojo.CouponTemplate;
 import com.eugene.remote.ICouponRemote;
 import com.eugene.remote.request.CouponTemplateRemoteRequest;
@@ -49,6 +50,8 @@ public class AdminServiceImpl implements IAdminService {
     private ICouponTemplateService couponTemplateService;
     @Autowired
     private ICouponRemote couponRemote;
+    @Autowired
+    private ICouponTemplateCacheService couponTemplateCacheService;
 
 
     @Override
@@ -121,12 +124,14 @@ public class AdminServiceImpl implements IAdminService {
         // 判断数据 是否存在， 存在就update，不存在就insert
         for (CouponTemplate couponTemplateRemote : couponTemplateList) {
             QueryWrapper<CouponTemplate> couponTemplateQueryWrapper = new QueryWrapper<>();
-            couponTemplateQueryWrapper.eq("id", couponTemplateRemote.getId());
+            couponTemplateQueryWrapper.eq("code", couponTemplateRemote.getCode());
             CouponTemplate couponTemplate = couponTemplateService.getOne(couponTemplateQueryWrapper, false);
             if (Objects.isNull(couponTemplate)) {
                 couponTemplateService.save(couponTemplateRemote);
+                couponTemplateCacheService.invalidateCouponTemplateCache(couponTemplate.getCode());
             } else {
                 couponTemplateService.updateById(couponTemplateRemote);
+                couponTemplateCacheService.invalidateCouponTemplateCache(couponTemplate.getCode());
             }
         }
     }
