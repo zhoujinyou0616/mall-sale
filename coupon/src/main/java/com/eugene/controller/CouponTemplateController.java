@@ -32,17 +32,19 @@ public class CouponTemplateController {
     @PostMapping("/addCouponTemplate")
     @Operation(summary = "添加优惠券模版信息", description = "添加优惠券模版信息")
     public Response addCouponTemplate(@RequestBody @Valid CouponTemplateRequest request) {
-//        return Response.success(couponTemplateService.addCouponTemplate(request));
-        return Response.success(couponTemplateDoubleWriteService.addCouponTemplateDoubleWrite(request));
+        return Response.success(couponTemplateService.addCouponTemplate(request));
+        // 双写上线实战代码
+//        return Response.success(couponTemplateDoubleWriteService.addCouponTemplateDoubleWrite(request));
     }
 
     @GetMapping("/getCouponTemplate")
     @Operation(summary = "查询优惠券模版信息", description = "添加优惠券模版信息")
     @Parameter(name = "couponTemplateCode", description = "券模版Code", required = true)
     public Response getCouponTemplate(@NotBlank(message = "券模版Code不能为空") @RequestParam("couponTemplateCode") String couponTemplateCode) {
-//        return Response.success(couponTemplateService.getCouponTemplate(couponTemplateCode));
-        log.info("mall-coupon getCouponTemplate couponTemplateCode:{}", couponTemplateCode);
-        return Response.success(couponTemplateDoubleWriteService.getCouponTemplateDoubleWrite(couponTemplateCode));
+        return Response.success(couponTemplateService.getCouponTemplate(couponTemplateCode));
+        // 双写上线实战代码
+//        log.info("mall-coupon getCouponTemplate couponTemplateCode:{}", couponTemplateCode);
+//        return Response.success(couponTemplateDoubleWriteService.getCouponTemplateDoubleWrite(couponTemplateCode));
 
     }
 
