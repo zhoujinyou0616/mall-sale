@@ -1,0 +1,30 @@
+# 整合nacos，如果不想用nacos，可以把/nacos目录下的配置文件拷贝到/resources目录下替换使用
+spring:
+  config:
+    import:
+      - optional:nacos:activity_config.yml
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: e67a68d9-0db1-4699-8dd2-522e9022ac45
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: e67a68d9-0db1-4699-8dd2-522e9022ac45
+rocketmq:
+  producer:
+    group: activity-group
+    send-message-timeout: 10000
+  name-server: 127.0.0.1:9876
+  consumer:
+    group: activity-group
+
+
+feign:
+  client:
+    config:
+      mall-coupon-new: # 对应服务
+        connect-timeout: 5000
+        read-timeout: 10000
+  hystrix:
+    enabled: true # 开启hystrix断路器

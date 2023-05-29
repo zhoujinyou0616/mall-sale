@@ -1,0 +1,40 @@
+server:
+  port: 8083
+  undertow:
+    io-threads: 8
+    worker-threads: 256
+  servlet:
+    context-path: /activity
+spring:
+  #文件上传设置
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/mall_activity_db?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.zaxxer.hikari.HikariDataSource
+          hikari:
+            minimum-idle: 50
+            maximum-pool-size: 200
+            idle-timeout: 10000
+            connection-test-query: select 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1
+
+logging:
+  config: classpath:logback/logback-dev.xml
