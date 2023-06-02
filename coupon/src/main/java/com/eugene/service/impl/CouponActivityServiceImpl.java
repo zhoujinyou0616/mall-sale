@@ -150,6 +150,7 @@ public class CouponActivityServiceImpl implements ICouponActivityService {
                     // 保存领券活动参与记录 todo 改为MQ异步更新Mysql数据库，提高性能
                     CouponActivityLog couponActivityLog = getCouponActivityLog(request, coupon);
                     couponActivityLogMapper.insert(couponActivityLog);
+                    // todo 发送优惠券过期延时队列，更新优惠券过期状态
                     // 组装返回领取的优惠券信息
                     couponResponse = buildCouponResponse(coupon);
                 } else {
