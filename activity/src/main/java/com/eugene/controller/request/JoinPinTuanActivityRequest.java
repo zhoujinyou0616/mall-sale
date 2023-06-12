@@ -18,6 +18,10 @@ public class JoinPinTuanActivityRequest {
     @Schema(description = "活动商品sku", required = true)
     private String sku;
 
+    @NotNull(message = "拼团活动id不能为空")
+    @Schema(description = "拼团活动id", required = true)
+    private Long pinTuanActivityId;
+
     @NotNull(message = "活动id不能为空")
     @Schema(description = "活动id", required = true)
     private Long activityId;

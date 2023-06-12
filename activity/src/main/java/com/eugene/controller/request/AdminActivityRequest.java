@@ -51,7 +51,7 @@ public class AdminActivityRequest {
     @Schema(description = "活动类型：0-秒杀 1-拼团 2-砍价", required = true)
     @NotNull(message = "活动类型不能为空")
     private Integer type;
-    @Schema(description = "活动规则", required = true)
+    @Schema(description = "活动规则：{\\\"number\\\":2} number:成团人数", required = true)
     @NotBlank(message = "活动规则不能为空")
     private String rule;
     @Schema(description = "活动创建人id", required = true)
@@ -95,9 +95,9 @@ public class AdminActivityRequest {
         Date currentDate = new Date();
         if (currentDate.before(activity.getPreheatTime())) {
             return ActivityStatusEnum.NO_START.getCode();
-        } else if (currentDate.after(activity.getPreheatTime()) && currentDate.before(activity.getBeginTime())) {
+        } else if (currentDate.after(activity.getPreheatTime()) && currentDate.before(activity.getEndTime())) {
             return ActivityStatusEnum.IN_PROGRESS.getCode();
-        } else if (currentDate.after(activity.getBeginTime()) && currentDate.before(activity.getEndTime())) {
+        } else if (currentDate.after(activity.getEndTime())) {
             return ActivityStatusEnum.FINISH.getCode();
         }
         return 0;

@@ -29,16 +29,18 @@ CREATE TABLE `t_activity`
   DEFAULT CHARSET = utf8 comment '活动表';
 
 
-CREATE TABLE `t_pin_tuan_activity_log`
+CREATE TABLE `t_pin_tuan_activity`
 (
-    `id`          bigint(20) AUTO_INCREMENT NOT NULL COMMENT 'id',
-    `activity_id` bigint(20) NOT NULL COMMENT '活动id',
-    `order_no`    varchar(20) NOT NULL COMMENT '订单号',
-    `user_id`     bigint(20) NOT NULL COMMENT '参与用户id',
-    `mobile`      varchar(20) NOT NULL COMMENT '手机号',
-    `status`      int2        NOT NULL COMMENT '拼团状态：0:待支付;1:已支付;2:已成团;3:未成团,已退款;4:超时未成团,已退款',
-    `create_time` datetime    NOT NULL COMMENT '创建时间',
-    `update_time` datetime    NOT NULL COMMENT '更新时间',
+    `id`                        bigint(20) AUTO_INCREMENT NOT NULL COMMENT 'id',
+    `join_pin_tuan_activity_id` bigint(20) DEFAULT NULL COMMENT '参与的拼团活动id',
+    `activity_id`               bigint(20) NOT NULL COMMENT '活动id',
+    `order_no`                  varchar(20) NOT NULL COMMENT '订单号',
+    `sku`                       varchar(50) NOT NULL COMMENT '活动商品sku',
+    `user_id`                   bigint(20) NOT NULL COMMENT '参与用户id',
+    `mobile`                    varchar(20) NOT NULL COMMENT '手机号',
+    `status`                    int2        NOT NULL COMMENT '拼团状态：0:待支付;1:已支付;2:已成团;3:未成团,已退款;4:超时未成团,已退款',
+    `create_time`               datetime    NOT NULL COMMENT '创建时间',
+    `update_time`               datetime    NOT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8 comment '拼团活动参与记录表';
+  DEFAULT CHARSET = utf8 comment '拼团活动表';

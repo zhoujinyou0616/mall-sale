@@ -5,7 +5,8 @@ package com.eugene.cache;
 import com.eugene.pojo.Activity;
 
 /**
- * @Description TODO 可以优化成guava cache，下面直接增加实现类即可
+ * TODO 可以优化成guava cache，下面直接增加实现类即可
+ *
  * @Author eugene
  * @Data 2023/4/27 20:43
  */

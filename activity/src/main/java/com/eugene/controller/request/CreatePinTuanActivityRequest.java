@@ -18,10 +18,6 @@ public class CreatePinTuanActivityRequest {
     @Schema(description = "活动商品sku", required = true)
     private String sku;
 
-    @NotNull(message = "活动id不能为空")
-    @Schema(description = "活动id", required = true)
-    private Long activityId;
-
     @NotNull(message = "用户id不能为空")
     @Schema(description = "用户id", required = true)
     private Long userId;

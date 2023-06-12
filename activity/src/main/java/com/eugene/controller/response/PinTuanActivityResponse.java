@@ -18,10 +18,14 @@ public class PinTuanActivityResponse {
 
     @Schema(description = "id")
     private Long id;
+    @Schema(description = "参与的拼团活动id", required = true)
+    private Long joinPinTuanActivityId;
     @Schema(description = "活动id")
     private Long activityId;
     @Schema(description = "订单号")
     private String orderNo;
+    @Schema(description = "活动商品sku")
+    private String sku;
     @Schema(description = "参与用户id")
     private Long userId;
     @Schema(description = "手机号")
@@ -37,8 +41,10 @@ public class PinTuanActivityResponse {
     public static PinTuanActivityResponse convertPinTuanActivityResponse(PinTuanActivity pinTuanActivityInfo) {
         PinTuanActivityResponse response = new PinTuanActivityResponse();
         response.setId(pinTuanActivityInfo.getId());
+        response.setJoinPinTuanActivityId(pinTuanActivityInfo.getJoinPinTuanActivityId());
         response.setActivityId(pinTuanActivityInfo.getActivityId());
         response.setOrderNo(pinTuanActivityInfo.getOrderNo());
+        response.setSku(pinTuanActivityInfo.getSku());
         response.setUserId(pinTuanActivityInfo.getUserId());
         response.setMobile(pinTuanActivityInfo.getMobile());
         response.setStatus(pinTuanActivityInfo.getStatus());

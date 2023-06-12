@@ -50,7 +50,7 @@ public class AdminActivityServiceImpl extends ServiceImpl<ActivityMapper, Activi
 
     @SneakyThrows
     @Override
-    public boolean createActivity(AdminActivityRequest request) {
+    public Long createActivity(AdminActivityRequest request) {
         // 检查活动设置是否正确
         if (Boolean.FALSE.equals(checkActivityConfig(request))) {
             log.error("活动设置不正确");
@@ -61,7 +61,7 @@ public class AdminActivityServiceImpl extends ServiceImpl<ActivityMapper, Activi
         activityMapper.insert(activity);
         // 发送活动消息
         activityProducerService.delaySendMessage(activity);
-        return true;
+        return activity.getId();
     }
 
     /**

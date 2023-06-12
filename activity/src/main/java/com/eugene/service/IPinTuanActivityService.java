@@ -1,6 +1,5 @@
 package com.eugene.service;
 
-import com.eugene.controller.request.CreatePinTuanActivityRequest;
 import com.eugene.controller.request.JoinPinTuanActivityRequest;
 import com.eugene.pojo.PinTuanActivity;
 
@@ -10,11 +9,14 @@ import com.eugene.pojo.PinTuanActivity;
  * @Data 2023/4/29 13:01
  */
 public interface IPinTuanActivityService {
-    String createPinTuanOrder(CreatePinTuanActivityRequest request);
+    void createPinTuanOrder(PinTuanActivity pinTuanActivity);
 
 
-    PinTuanActivity getPinTuanActivityInfo(String activityId);
+    PinTuanActivity getPinTuanActivityInfo(Long pinTuanActivityId);
 
     String joinPinTuanActivity(JoinPinTuanActivityRequest request);
 
+    Integer getPinTuanOrderNumber(Long pinTuanActivityId);
+
+    void updateActivityStatus(JoinPinTuanActivityRequest request, int code);
 }

@@ -14,7 +14,7 @@ public interface IAdminActivityService {
 
     List<AdminActivityResponse> getActivityInfoList();
 
-    boolean createActivity(AdminActivityRequest request);
+    Long createActivity(AdminActivityRequest request);
 
     AdminActivityResponse getActivityInfo(Long activityId);
 

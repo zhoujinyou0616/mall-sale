@@ -14,9 +14,9 @@ public interface IActivityService {
 
     ActivityResponse getActivityInfoBySku(String sku);
 
-    String createPinTuanActivity(CreatePinTuanActivityRequest request);
+    Long createPinTuanActivity(CreatePinTuanActivityRequest request);
 
-    PinTuanActivityResponse getPinTuanActivityInfo(String activityId);
+    PinTuanActivityResponse getPinTuanActivityInfo(Long pinTuanActivityId);
 
     String joinPinTuanActivity(JoinPinTuanActivityRequest request);
 }

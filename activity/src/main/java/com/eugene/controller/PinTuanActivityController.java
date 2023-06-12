@@ -32,16 +32,15 @@ public class PinTuanActivityController {
      */
     @PostMapping("/createPinTuanActivity")
     public Response createPinTuanActivity(@RequestBody CreatePinTuanActivityRequest request) {
-        activityService.createPinTuanActivity(request);
-        return Response.success();
+        return Response.success(activityService.createPinTuanActivity(request));
     }
 
     /**
      * 查询拼团活动详情
      */
-    @GetMapping("/pinTuanActivityInfo/{activityId}")
-    public Response getPinTuanActivityInfo(@PathVariable("activityId") String activityId) {
-        return Response.success(activityService.getPinTuanActivityInfo(activityId));
+    @GetMapping("/pinTuanActivityInfo/{pinTuanActivityId}")
+    public Response getPinTuanActivityInfo(@PathVariable("pinTuanActivityId") Long pinTuanActivityId) {
+        return Response.success(activityService.getPinTuanActivityInfo(pinTuanActivityId));
     }
 
     /**

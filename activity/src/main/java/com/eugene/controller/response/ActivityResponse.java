@@ -39,6 +39,8 @@ public class ActivityResponse {
     private Integer status;
     @Schema(description = "活动类型：0-秒杀 1-拼团 2-砍价")
     private Integer type;
+    @Schema(description = "'活动规则'", required = true)
+    private String rule;
     @Schema(description = "活动创建时间")
     private Date createTime;
 
@@ -56,6 +58,7 @@ public class ActivityResponse {
         response.setEndTime(activity.getEndTime());
         response.setStatus(activity.getStatus());
         response.setType(activity.getType());
+        response.setRule(activity.getRule());
         response.setCreateTime(activity.getCreateTime());
         return response;
     }
