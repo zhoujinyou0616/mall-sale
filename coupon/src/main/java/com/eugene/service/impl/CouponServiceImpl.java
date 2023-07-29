@@ -220,7 +220,6 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
     }
 
     private Coupon getCouponDB(String code) {
-        Coupon couponCache;
         QueryWrapper<Coupon> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("code", code);
         queryWrapper.eq("status", StatusEnum.AVAILABLE.getCode());
@@ -231,10 +230,38 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
             couponCacheService.setCouponCache(new Coupon("default"), 1L, TimeUnit.MINUTES);
             return null;
         } else {
-            couponCacheService.setCouponCache(coupon);
-            couponCache = coupon;
+            // 判断优惠券是否在有效期内
+            if (checkCouponIsAvailable(coupon)) {
+                couponCacheService.setCouponCache(coupon);
+                return coupon;
+            } else if (checkCouponIsExpired(coupon)) {
+                // 优惠券已过期，进行清理
+                couponCacheService.delUserCouponCode(coupon);
+                couponCacheService.delCouponCache(coupon);
+                coupon.setStatus(CouponStatusEnum.EXPIRED.getCode());
+                couponMapper.updateById(coupon);
+            }
         }
-        return couponCache;
+        return null;
+    }
+
+    /**
+     * 判断当前优惠券是否有效
+     * 当前是优惠券状态是生效、当前时间在优惠券可用范围内、
+     */
+    private boolean checkCouponIsAvailable(Coupon coupon) {
+        return coupon.getStatus().equals(CouponStatusEnum.AVAILABLE.getCode())
+                && coupon.getBeginTime().before(new Date())
+                && coupon.getEndTime().after(new Date());
+    }
+
+    /**
+     * 判断当前优惠券是否已过期
+     * 当前是优惠券状态是生效、当前时间在优惠券可用范围内、
+     */
+    private boolean checkCouponIsExpired(Coupon coupon) {
+        return coupon.getStatus().equals(CouponStatusEnum.EXPIRED.getCode())
+                || coupon.getEndTime().before(new Date());
     }
 
 }
